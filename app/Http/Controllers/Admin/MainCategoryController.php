@@ -40,7 +40,7 @@ class MainCategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' =>'required|unique:sub_categories,name',
+            'name' =>'required|unique:main_categories,name',
             'image1' => 'required',
         ]);
         $user = Auth::user();

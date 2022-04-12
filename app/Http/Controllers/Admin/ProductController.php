@@ -45,7 +45,7 @@ class ProductController extends Controller
     {
         $request->validate([
             'main_category_id' => 'required',
-            'sub_category_id' => 'required',
+            'sub_category_id' => 'unique:products,sub_category_id',
             'price' => 'required',
             'quantity' => 'required',
             'image1' => 'required',
@@ -75,7 +75,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+        return view('admin.all-product.show', compact('product'));
     }
 
     /**
@@ -86,7 +86,10 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $mainCategories = MainCategory::all();
+        $subCategories = SubCategory::all();
+        // $products = Product::all();
+        return view('admin.all-product.edit', compact('product', 'mainCategories', 'subCategories'));
     }
 
     /**
@@ -96,9 +99,30 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'main_category_id' => 'required',
+            'sub_category_id' => 'required',
+            'price' => 'required',
+            'quantity' => 'required',
+            'image1' => 'required',
+
+        ]);
+
+        $user = Auth::user();
+        // Image Processing
+        $file = $request->file('image1');
+        $path_1 = $file? Storage::url($request->file('image1')->store('/public/products'. $user->id)) : '';
+        $product = Product::findOrFail($id);
+        $product->user_id = $user->id;
+        $product->main_category_id = $request->main_category_id;
+        $product->sub_category_id = $request->sub_category_id;
+        $product->image1 = $path_1;
+        $product->price = $request->price;
+        $product->quantity = $request->quantity;
+        $product->save();
+        return redirect()->route('products.index')->with('success', 'A new product created successfuly!');
     }
 
     /**
@@ -109,6 +133,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return back()->with('success', 'A product deleted successfuly!');
     }
 }

@@ -38,7 +38,7 @@
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-circle-o"></i>Cart</a>
                     <ul class="sub-menu children dropdown-menu">
-                        <li><i class="menu-icon fa fa-table"></i><a href="">All Cart Table</a></li>
+                        <li><i class="menu-icon fa fa-table"></i><a href="{{route('cart.index')}}">All Cart Table</a></li>
                     </ul>
                 </li>
                 {{-- WishList --}}
@@ -46,7 +46,7 @@
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-circle-o"></i>WishList</a>
                     <ul class="sub-menu children dropdown-menu">
-                        <li><i class="menu-icon fa fa-table"></i><a href="">WishList Table</a></li>
+                        <li><i class="menu-icon fa fa-table"></i><a href="{{route('wish_list.index')}}">WishList Table</a></li>
                     </ul>
                 </li>
                 {{-- Ordered Product --}}
@@ -54,7 +54,7 @@
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-circle-o"></i>Orderd Product</a>
                     <ul class="sub-menu children dropdown-menu">
-                        <li><i class="menu-icon fa fa-table"></i><a href="">Orderd Table</a></li>
+                        <li><i class="menu-icon fa fa-table"></i><a href="{{route('orders.index')}}">Orderd Table</a></li>
                     </ul>
                 </li>
             </ul>

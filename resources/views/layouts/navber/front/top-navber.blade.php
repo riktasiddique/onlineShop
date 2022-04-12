@@ -16,21 +16,20 @@
 
     <div class="header-2 mb-5">
         <div id="menu-bar" class="fas fa-bars"></div>
-
         <nav class="navbar">
             <a href="">home</a>
-            <a href="">category</a>
-            <a href="">product</a>
+            <a href="{{route('home.category')}}">category</a>
+            <a href="{{route('home.product')}}">product</a>
             @auth
-            <a href="">My Deal</a>
+            <a href="{{route('home.myDeal')}}">My Deal</a>
             @else
                 <a href="{{ route('login') }}">log in</a>
             @endauth
         </nav>
         <div class="icons">
             @auth
-                <a href="" class="fas fa-shopping-cart">
-                <a href="" class="fas fa-heart"></a>
+                <a href="{{route('home.addCart')}}" class="fas fa-shopping-cart">
+                <a href="{{route('home.wish_list')}}" class="fas fa-heart"></a>
                 <a href="" class="fas fa-user-circle"></a>
                 <a href="" class="fas  fa-phone"></a>
                 @else

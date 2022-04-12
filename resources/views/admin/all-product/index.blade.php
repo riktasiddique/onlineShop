@@ -2,7 +2,7 @@
 @section('title', 'All Product')
 @section('content')
     <div class="row justify-content-center">
-        <div class="col-lg-8">
+        <div class="col-lg-10">
             <button type="button" class="btn btn-info mb-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 + Add New
               </button>
@@ -14,7 +14,8 @@
                     <table class="table table-success table-bordered table-hover">
                         <thead>
                             <tr>
-                                <th scope="col">Id</th>
+                                <th scope="col">Creator</th>
+                                <th scope="col">Category</th>
                                 <th scope="col">Image1</th>
                                 <th scope="col">Edit</th>
                                 <th scope="col">Delate</th>
@@ -25,7 +26,10 @@
                         <tbody>
                             @foreach ($products as $product)
                             <tr>
-                                <th scope="row">{{$product->id}}</th>
+                                <th scope="row">{{$product->creator->name}}</th>
+                                 <td>
+                                    Main: <span class="text-danger">{{$product->maincategory->name}}</span><br>Sub: <span class="text-danger">{{$product->subcategory->name}}</span>
+                                </td>
                                 <td><img src="{{url($product->image1)}}" alt="" height="50" ></td>
                                 <td>
                                     <a href="{{route('products.edit', $product->id)}}" class="btn btn-primary"><i class="fa  fa-edit (alias)"></i></a>
@@ -39,15 +43,14 @@
                                     </form>
                                 </td>
                                 <td>
-                                    <form action="" method="POST">
+                                    <form action="{{route('admin.addWishList', $product->id)}}" method="POST">
                                         @csrf
                                         <button type="submit" class="btn"><i class="fa fa-heart"></i></button>
                                     </form>
                                 </td>
                                 <td>
-                                    <form action="" method="post">
+                                    <form action="{{route('admin.addCart', $product->id)}}" method="post">
                                         @csrf
-                                        {{-- <a href="" class="btn btn-primary">Add Cart</a> --}}
                                         <button type="submit" class="btn btn-primary">Add Cart</button>
                                     </form>
                                 </td>

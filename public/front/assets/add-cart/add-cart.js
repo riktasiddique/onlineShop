@@ -3,7 +3,6 @@ function totalPrice(){
   let total_price = 0;
   priceIds.forEach(price => total_price += +price.innerText);
   return total_price;
-  // console.log(total_price);
 }
 let totalPayable = () =>{
   document.getElementById('subTotal').innerText = totalPrice();

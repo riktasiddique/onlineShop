@@ -28,7 +28,9 @@
                                 <th scope="row">{{$subCategory->id}}</th>
                                 <td>{{$subCategory->creator->name}}</td>
                                 {{-- <td>{{$subCategory->maincategory->name}}</td> --}}
-                                <td>Main: <span class="text-danger">{{$subCategory->maincategory->name}}</span><br>Sub: <span class="text-danger">{{$subCategory->name}}</span></td>
+                                <td>
+                                    Main: <span class="text-danger">{{$subCategory->maincategory->name}}</span><br>Sub: <span class="text-danger">{{$subCategory->name}}</span>
+                                </td>
                                 <td>
                                     <a href="{{route('sub_category.edit', $subCategory->id)}}" class="btn btn-primary"><i class="fa  fa-edit (alias)"></i></a>
                                 </td>
