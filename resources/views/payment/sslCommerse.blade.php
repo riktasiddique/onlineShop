@@ -84,16 +84,6 @@
                         </div>
                     </div>
                     <hr>
-                    {{-- <div class="row">
-                        <div class="col-md-4">
-                            <p>Total:</p>
-                        </div>
-                        <div class="col-md-4"></div>
-                        <div class="col-md-4">
-                            <p><span id="total">{{$total+50}}</span> Tk</p>
-                        </div>
-                    </div> --}}
-                    {{-- <hr> --}}
                     <div class="row" style="border: dotted gray 2px">
                         <div class="col-md-4">
                             <p>Payable:</p>

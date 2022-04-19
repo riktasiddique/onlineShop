@@ -97,6 +97,7 @@ class SslCommerzPaymentController extends Controller
         $order->address = $post_data['cus_add1'];
         $order->transaction_id = $post_data['tran_id'];
         $order->currency = $post_data['currency'];
+        $order->delivery_type = 'SSL Commerze';
         $order->id;
         $order->save();
 

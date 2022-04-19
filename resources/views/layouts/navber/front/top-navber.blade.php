@@ -30,7 +30,7 @@
             @auth
                 <a href="{{route('home.addCart')}}" class="fas fa-shopping-cart">
                 <a href="{{route('home.wish_list')}}" class="fas fa-heart"></a>
-                <a href="" class="fas fa-user-circle"></a>
+                <a href="{{route('home.profile')}}" class="fas fa-user-circle"></a>
                 <a href="" class="fas  fa-phone"></a>
                 @else
                 <a href="" class="fas  fa-phone"></a>

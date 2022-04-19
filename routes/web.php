@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\WishListController;
 use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\SslCommerzPaymentController;
+use App\Http\Controllers\StripeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -84,6 +85,16 @@ Route::prefix('/')->middleware(['auth','is_block'])->group(function () {
     Route::post('choseOrder', [HomeController::class, 'choseOrder'])->name('home.choseOrder');
     Route::get('myDeal', [HomeController::class, 'myDeal'])->name('home.myDeal');
     Route::get('order_details/{order}', [HomeController::class, 'myDealView'])->name('home.myDealView');
+    Route::resource('payment/stripe', StripeController::class);
+    // -------------------------------------------------------------------
+                                // Stripe
+    Route::post('payment/stripe', [StripeController::class, 'stripeStore'])->name('stripe.post');
+    // ----------------------------------------------------------------------
+                            // Cash on Delivery
+    Route::get('cash_on_delivery', [HomeController::class, 'cashOnDelivery'])->name('home.cash_on_delivery');
+    Route::post('cash_on_delivery', [HomeController::class, 'cashOnDeliveryStore'])->name('home.cash_on_delivery_store');
+    Route::get('profile', [HomeController::class, 'profile'])->name('home.profile');
+    Route::post('changePassword', [HomeController::class, 'changePassword'])->name('user.changePassword');
 });
 
 // ------------------------------------------------------------------------

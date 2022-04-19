@@ -3,7 +3,7 @@
 @section('content')
     <section>
         <div class="row justify-content-center">
-            <div class="col-lg-10">
+            <div class="col-lg-8">
                 <div class="card">
                     <div class="card-header">
                         <strong class="card-title">All Orders Table</strong>
@@ -13,9 +13,9 @@
                             <thead>
                                 <tr>
                                     <th scope="col">Id</td>
-                                    <th scope="col">Transaction</th>
+                                    {{-- <th scope="col">Transaction</th> --}}
                                     <th scope="col">Name</th>
-                                    <th scope="col">Email</th>
+                                    {{-- <th scope="col">Email</th> --}}
                                     <th scope="col">Phone</th>
                                     <th scope="col">Address</th>
                                     <th scope="col">Total</th>
@@ -36,9 +36,9 @@
                                         <td>
                                             {{$count}}
                                         </td>
-                                        <td class="text-danger">{{$order->transaction_id}}</td>
+                                        {{-- <td class="text-danger">{{$order->transaction_id}}</td> --}}
                                         <td>{{$order->name}}</td>
-                                        <td>{{$order->email}}</td>
+                                        {{-- <td>{{$order->email}}</td> --}}
                                         <td>{{$order->phone}}</td>
                                         <td>{{$order->address}}</td>
                                         <td>{{$order->amount}}</td>

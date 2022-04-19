@@ -8,9 +8,11 @@ use App\Models\MainCategory;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
+use App\Models\User;
 use App\Models\WishList;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class HomeController extends Controller
 {
@@ -148,9 +150,9 @@ class HomeController extends Controller
         if($request->input('delivery_type') == 'national_card'){
             return redirect()->route('home.payment');
         }elseif($request->input('delivery_type') == 'international_card'){
-            return 'international';
+            return redirect()->route('stripe.index');
         }elseif($request->input('delivery_type') == 'cash_on_delivery'){
-            return 'cash_on_delivery';
+            return redirect()->route('home.cash_on_delivery');
         }
         return back()->with('error', 'অনুগ্রহ করে পেমেন্ট ধরন নির্বাচন করুন!');
     }
@@ -164,5 +166,82 @@ class HomeController extends Controller
         $order_items = OrderItem::Where('order_id', $id)->get();
         $order = Order::find($id);
         return view('front.home.my_deal_details', compact('user', 'order_items', 'order'));
+    }
+    public function cashOnDelivery(){
+        $user = Auth::user();
+        $carts  = Cart::Where('user_id', $user->id)->get();
+        if(count($carts)< 1){
+            return redirect('/')->with('error', 'Please add some product in your cart and then pay !!');
+        }
+        return view('payment.cashOnDelivery', compact('carts', 'user'));
+    }
+    public function cashOnDeliveryStore(Request $request){
+        
+        $user = Auth::user();
+        $post_data['tran_id'] = uniqid();
+        $order = new Order();
+        $order->name = $request->name;
+        $order->email = $request->email;
+        $order->user_id = $user->id;
+        $order->phone = $request->phone;
+        $order->amount = $request->total;
+        $order->status = 'Pending';
+        $order->address = $request->address;
+        $order->transaction_id = $post_data['tran_id'];
+        $order->currency = 'BDT';
+        $order->delivery_type = 'Cash On Delivery';
+        $order->id;
+        $order->save();
+
+        $carts = Cart::where('user_id', $user->id)->get();
+        foreach($carts as $cart){
+            $order_item = new OrderItem();
+            $order_item->order_id = $order->id;
+            $order_item->user_id = $user->id;
+            $order_item->product_id = $cart->product->id;
+            $order_item->quantity = $cart->quantity;
+            $order_item->save();
+            $cart->delete();
+        }
+        return redirect('/')->with('success', 'Your Order Placed successfuly!');
+    }
+    public function profile(){
+        $user = Auth::user();
+        return view('front.home.profile', compact('user'));
+    }
+    public function changePassword(Request $request){
+        
+        // $hashedPassword = Auth::user()->password;
+        // if(!(Hash::check($request->oldPassword, $hashedPassword))){
+        //     return back()->with('error', 'Your Old Password not Matched!');
+        // }elseif(!$request->newPassword || ($request->newPassword !== $request->confirmPassword)){
+        //     return back()->with('error','Both Password Should be same!');
+        // }
+        // $user = User::find(auth()->id());
+        // $newPassword = Hash::make($request->newpassword);
+        // $user->password = $newPassword;
+        // $user->save();
+        // return back()->with('success', 'Your Password Changed Successfuly!');
+
+
+        $request->validate([
+            'newPassword' => 'required|min:8',
+        ]);
+        if(!$request->newPassword || (!$request->newPassword == $request->confirmPassword)){
+            return back()->with('error', 'Both password should be same!');
+        }
+        else{
+            $matchedOldPassword = Hash::check($request->oldPassword, auth()->user()->password);
+            if(!$matchedOldPassword){
+                return back()->with('error', 'Old password not matched!');
+            }else{
+                $hashNewPassword = Hash::make($request->newPassword);
+                $user = User::find(auth()->id());
+                $user->password = $hashNewPassword;
+                $user->save();
+                return back()->with('success', 'The password changed successfuly!');
+            }
+        }
+       
     }
 }

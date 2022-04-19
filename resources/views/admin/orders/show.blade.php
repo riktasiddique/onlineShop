@@ -11,8 +11,11 @@
                 <div class="mx-auto d-block">
                     <h5 class="text-sm-center mt-2 mb-1">Email: <span class="text-muted">{{$order->email}}</span></h5>
                     <h5 class="text-sm-center mt-2 mb-1"><i class="fa fa-phone"></i> Phone: <span class="text-muted">{{$order->phone}}</span></h5>
+                    <h5 class="text-sm-center mt-2 mb-1">Transection Id: <span class="text-danger">{{$order->transaction_id}}</span></h5>
+                    <h5 class="text-sm-center mt-2 mb-1">Transection Id: <span class="text-danger">{{$order->currency}}</span></h5>
                     <br>
-                    <div class="location text-sm-center"><i class="fa fa-map-marker"></i> Address: <span class="text-muted">{{$order->division}}, {{$order->district}}, {{$order->upazila}}, {{$order->address}}</span></div>
+                    <h5 class="text-sm-center mt-2 mb-1">Delivery Type: {{$order->delivery_type}}</h5>
+                    <div class="location text-sm-center"><i class="fa fa-map-marker"></i> Address: <span class="text-muted">{{$order->address}}</span></div>
                     <h5 class="text-sm-center mt-2 mb-1">Ordered Time: <span class="text-muted">{{$order->created_at}}, {{($order->created_at)->diffForHumans()}} </span></h5>
                     <br>
                 </div>

@@ -13,7 +13,7 @@
                 <div class="card border border-secondary p-5">
                     <div class="card-header mb-5"><strong>Shipping Address</strong><small class="text-danger"> (Please Fill Out Your Information)</small></div>
                     <div class="card-body">
-                            <input class="w-100" type="text" name="phone_number" placeholder="Phone Number">
+                            <input class="w-100" type="text" name="phone" placeholder="Phone Number">
                             <hr class="w-60">
                             <br>
                             <input class="w-100" type="text" name="division" placeholder="Division">

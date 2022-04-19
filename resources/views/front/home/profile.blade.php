@@ -1,4 +1,4 @@
-@extends('layouts.front-app.app')
+@extends('layouts.app-layouts.front.app')
 @section('title', 'Profile')
 @section('content')
     <div class="row justify-content-center mt-5">
@@ -11,19 +11,25 @@
                                <img class="align-self-center rounded-circle mr-3" style="width:85px; height:85px;" alt="" src="images/admin.jpg">
                             </a> --}}
                             <div class="media-body">
-                                <h2 class="text-light display-6">{{$user->name}}</h2>
-                                <p>{{$user->email}}</p>
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-                                    <a href="" class="btn" :href="route('logout')" onclick="event.preventDefault();
-                                    this.closest('form').submit();">Log Out</a>
-                                </form>
+                                <h2 class="text-light display-6 text-center">{{$user->name}}</h2>
+                                <p class="text-center">{{$user->email}}</p>
+                                <div>
+                                    <div class="row justify-content-center ml-5">
+                                        <div class="col-md-4">
+                                            <form method="POST" action="{{ route('logout') }}">
+                                                @csrf
+                                                <a href="" class="btn-danger p-2 rounded" :href="route('logout')" onclick="event.preventDefault();
+                                                this.closest('form').submit();">Log Out</a>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="row justify-content-center mt-5">
                         <div class="col-md-11">
-                            <form action="{{route('home.change_password')}}"  method="POST">
+                            <form action="{{route('user.changePassword')}}"  method="POST">
                                 @csrf
                                 <div class="mb-3">
                                   <label for="exampleInputEmail1" class="form-label">Old Password</label>
@@ -37,7 +43,7 @@
                                     <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
                                     <input type="password" name="confirmPassword" class="form-control" id="exampleInputPassword1">
                                   </div>
-                                <button type="submit" class="btn btn-success ">Submit</button>
+                                <button type="submit" class="btn-success w-100 p-2 bordered">Save</button>
                               </form>
                         </div>
                     </div>
