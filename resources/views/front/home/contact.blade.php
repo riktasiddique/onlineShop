@@ -1,8 +1,7 @@
-@extends('layouts.front-app.app')
+@extends('layouts.app-layouts.front.app')
 @section('title', 'Contact')
 @section('content')
     <section class="contact" id="contact">
-
     <h1 class="heading"> <span>contact</span> us </h1>
         <form action="{{route('home.contact_store')}}" method="POST">
             @csrf

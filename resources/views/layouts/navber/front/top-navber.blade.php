@@ -13,7 +13,6 @@
         </form>
 
     </div>
-
     <div class="header-2 mb-5">
         <div id="menu-bar" class="fas fa-bars"></div>
         <nav class="navbar">
@@ -31,9 +30,9 @@
                 <a href="{{route('home.addCart')}}" class="fas fa-shopping-cart">
                 <a href="{{route('home.wish_list')}}" class="fas fa-heart"></a>
                 <a href="{{route('home.profile')}}" class="fas fa-user-circle"></a>
-                <a href="" class="fas  fa-phone"></a>
+                <a href="{{route('home.contact')}}" class="fas fa-phone"></a>
                 @else
-                <a href="" class="fas  fa-phone"></a>
+                <a href="{{route('home.contact')}}" class="fas  fa-phone"></a>
             @endauth
         </div>
 

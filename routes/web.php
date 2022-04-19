@@ -95,8 +95,9 @@ Route::prefix('/')->middleware(['auth','is_block'])->group(function () {
     Route::post('cash_on_delivery', [HomeController::class, 'cashOnDeliveryStore'])->name('home.cash_on_delivery_store');
     Route::get('profile', [HomeController::class, 'profile'])->name('home.profile');
     Route::post('changePassword', [HomeController::class, 'changePassword'])->name('user.changePassword');
+    Route::get('contact', [HomeController::class, 'contact'])->name('home.contact');
+    Route::post('contact', [HomeController::class, 'contactStore'])->name('home.contact_store');
 });
-
 // ------------------------------------------------------------------------
                        // End Front Controller
 // ------------------------------------------------------------------------

@@ -223,7 +223,6 @@ class HomeController extends Controller
         // $user->save();
         // return back()->with('success', 'Your Password Changed Successfuly!');
 
-
         $request->validate([
             'newPassword' => 'required|min:8',
         ]);
@@ -243,5 +242,11 @@ class HomeController extends Controller
             }
         }
        
+    }
+    public function contact(){
+        return view('front.home.contact');
+    }
+    public function contactStore(Request $request){
+        return $request->all();
     }
 }
