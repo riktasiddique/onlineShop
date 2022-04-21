@@ -8,6 +8,40 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## Minimum Requirements
+
+- PHP 7.3+
+- Composer 2.0+
+- MySQL 5.7+
+- Laravel 8.0
+
+## How to install
+- Step 1: Clone the repository
+https://github.com/riktasiddique/onlineShop.git
+
+- Step 2: Install Laravel
+ Composer install
+
+- Step 3: Run the migration( follow the order)
+    i) Migrate and seed the base tables (Needed only once)
+    php artisan migrate --seed
+
+
+- Step 4: To add payment gateway
+ For SSl - Add your Store_Id and Store_Password
+ For Stripe - Add your STRIPE_SECRET
+
+- Step 5: To contact with mail form
+(follow the order)
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.googlemail.com
+MAIL_PORT=465
+MAIL_USERNAME= Your mail address
+MAIL_PASSWORD=Your mail password
+MAIL_ENCRYPTION=ssl
+MAIL_FROM_ADDRESS= Your mail address
+MAIL_FROM_NAME="${APP_NAME}"
+
 ## About This Project
 
 This is a web-based E-Commerce Project. From here buyer can buy Grocery products. Any valid user can register here to buy any products. We have an dashboard panel to control this site. Users have three roles which is:
@@ -38,6 +72,11 @@ ucts by using product name, price, product category name.
 - User unique email validation: Another important feature in our system is using a
 valid and unique email address. This means you can not be able to register in our
 system if you are already registered with existing mail address.
+
+- Payment Gateway: Using this site you can pay payment. We have three types of payment category which is:
+i) Cash on delivery
+ii) National Payment
+iii) International Paymet system
 
 ## Software Requirement
 I have used those languages to create this project.
