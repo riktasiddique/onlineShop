@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ContactFormMail;
 use App\Models\Cart;
 use App\Models\MainCategory;
 use App\Models\Order;
@@ -13,6 +14,7 @@ use App\Models\WishList;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -103,6 +105,18 @@ class HomeController extends Controller
     public function product()
     {
         $products = Product::latest()->get();
+        $query = request()->get('query');
+        // dd($query);
+        if($query){
+            $products = Product::orWhere('price', "LIKE", "%$query%")
+            ->orWhere('quantity', "LIKE", "%$query%")
+            ->orWhereHas('mainCategory', function($mainCategory) use($query){
+               $mainCategory->where('name', "LIKE", "%$query%");
+            })
+            ->orWhereHas('subCategory', function($subCategory) use($query){
+                $subCategory->where('name', "LIKE", "%$query%");
+            })->paginate(18);
+        }
         return view('front.home.product', compact('products'));
     }
     public function productView($id)
@@ -247,6 +261,8 @@ class HomeController extends Controller
         return view('front.home.contact');
     }
     public function contactStore(Request $request){
-        return $request->all();
+      $contact_form_data = $request->all();
+      Mail::to('riktasiddique17')->send(new ContactFormMail($contact_form_data));
+      return back()->with('success', 'The mail send successfuly!');
     }
 }

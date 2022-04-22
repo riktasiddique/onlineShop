@@ -1,14 +1,14 @@
 <header>
     <div class="header-1">
 
-        <a href="#" class="logo"><i class="fas fa-shopping-basket"></i>groco</a>
+        <a href="" class="logo"><i class="fas fa-shopping-basket"></i>groco</a>
 {{-- 
         <form action="{{route('home.product')}}" class="search-box-container" method="GET">
             <input type="search" name="query" id="search-box" placeholder="search here..." value="{{request()->get('query')}}">
             <button type="submit" class="fas fa-search btn btn-success mb-2 p-3"></button>
         </form> --}}
-        <form action="" class="search-box-container">
-            <input type="search" name="query" id="search-box" placeholder="search here...">
+        <form action="{{route('home.product')}}" class="search-box-container">
+            <input type="search" name="query" id="search-box" placeholder="search here..." value="{{request()->get('query')}}">
             <button type="submit" class="fas fa-search btn btn-success mb-2 p-3"></button>
         </form>
 
